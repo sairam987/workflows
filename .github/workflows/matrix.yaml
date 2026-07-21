@@ -16,4 +16,4 @@ jobs:
       - name: runs-on ${{ matrix.os}}
         run: echo $RUNNER_OS
       - name: username
-        run: echo $uname
+        run: echo $USER
