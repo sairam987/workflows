@@ -15,4 +15,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}   
         issue-number: ${{ github.event.issue.number }}
         body: |
-          Hi ${{ github.event.issue.user.login }}! :wave: Thanks for opening this issue! We will look into it as soon as possible.
+          Hi @${{ github.event.issue.user.login }}! :wave: Thanks for opening this issue! We will look into it as soon as possible.
