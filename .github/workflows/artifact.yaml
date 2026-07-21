@@ -1,21 +1,31 @@
-name: Upload-Artifact
+name: upload-artifact
 on:
   push:
     branches: [main]
 jobs:
-  build:
+  Create-directory:
     runs-on: ubuntu-latest
     steps:
       - name: create directory
         run: mkdir -p build
+  create-content:
+    runs-on: ubuntu-latest
+    needs: Create-directory
+    steps:
       - name: create content
-        run: |
-          echo '<h1>Hello World</h1>' > build/hello.html
-          echo 'saved $(date)' > build/info.txt
-      - name: build artifact
-        run: zip -r build-app.zip build
-      - name: upload
-        uses: actions/upload-artifact@v4
+        run: echo 'hiiiii' > build/hello.txt
+  create-artifact:
+    runs-on: ubuntu-latest
+    depends_on: create-content
+    steps:
+      - name: create artifact
+        run: zip -r build.zip build
+  upload-artifact:
+    runs-on: ubuntu-latest
+    depends_on: create-artifact
+    steps:
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: app-build
-          path: build-app.zip
+          name: build-artifact
+          path: build.zip
