@@ -11,21 +11,22 @@ jobs:
   create-content:
     runs-on: ubuntu-latest
     needs: Create-directory
+    id: create-content
     steps:
       - name: create content
         run: echo 'hiiiii' > build/hello.txt
   create-artifact:
     runs-on: ubuntu-latest
-    depends_on: create-content
+    depends_on: steps.create-content.outcome = 'success'
     steps:
       - name: create artifact
         run: zip -r build.zip build
   upload-artifact:
     runs-on: ubuntu-latest
-    depends_on: create-artifact
+    needs: create-artifact
     steps:
       - name: upload artifact
         uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact
-          path: build.zip
+          with:
+            name: build-artifact
+            path: build.zip
