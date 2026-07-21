@@ -3,7 +3,8 @@ run-name: " ${{ github.actor }} workflow"
 on:
   branches:
     - feature/**
-  [push]
+  types:
+    - push
 jobs:
   shell:
     runs-on: ubuntu-latest

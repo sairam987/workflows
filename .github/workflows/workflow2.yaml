@@ -2,7 +2,7 @@ name: "Workflow2"
 run-name: "${{ github.actor }} workflow running"
 on:
   branches:
-    - main
+    [main]
   types:
     - push
 jobs:
