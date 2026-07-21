@@ -1,25 +1,25 @@
 name: Issue Greeter Bot
 
 on:
-	issues:
-		types: [opened]
+  issues:
+    types: [opened]
 
 permissions:
-	issues: write
+  issues: write
 
 jobs:
-	greet:
-		runs-on: ubuntu-latest
-		steps:
-			- name: Post welcome comment
-				uses: peter-evans/create-or-update-comment@v4
-				with:
-					token: ${{ secrets.GITHUB_TOKEN }}
-					issue-number: ${{ github.event.issue.number }}
-					body: |
-						Hi @${{ github.event.issue.user.login }}! :wave:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post welcome comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }}! :wave:
 
-						Thanks for opening this issue — we appreciate the report. A maintainer will review it soon.
+            Thanks for opening this issue — we appreciate the report. A maintainer will review it soon.
 
-						Please make sure to include a minimal, reproducible example and any relevant logs or screenshots.
+            Please make sure to include a minimal, reproducible example and any relevant logs or screenshots.
 
