@@ -1,0 +1,21 @@
+name: Upload-Artifact
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create directory
+        run: mkdir -p build
+      - name: create content
+        run: |
+          echo '<h1>Hello World</h1>' > build/hello.html
+          echo 'saved $(date)' > build/info.txt
+      - name: build artifact
+        run: zip -r build-app.zip build
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build
+          path: build-app.zip

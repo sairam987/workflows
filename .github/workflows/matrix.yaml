@@ -2,10 +2,10 @@ name : CI
 on:
   push:
     branches:
-      - main
+      - feature/**
   pull_request:
     branches:
-      - main
+      - feature/**
 jobs:
   build:
     strategy:
@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: runs-on ${{ matrix.os}}
+      - name: runs-on ${{ matrix.os }}
         run: echo $RUNNER_OS
       - name: username
         run: echo $USER
