@@ -1,11 +1,12 @@
-name: workflow1
-run-name: " ${{ github.actor }} workflow"
+name: "Workflow2"
+run-name: "${{ github.actor }} workflow running"
 on:
   branches:
-    - feature/**
-  [push]
+    - main
+  types:
+    - push
 jobs:
-  shell:
+  Test-run:
     runs-on: ubuntu-latest
     steps:
       - name: echo hello
