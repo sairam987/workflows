@@ -2,7 +2,7 @@ name: Greeting Bot
 on:
   issues:
     types:
-      [opened,edited,updated,commented]
+      [opened,edited,issue_comment]
 permissions:
   issues: write      
 jobs:
