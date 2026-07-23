@@ -31,31 +31,31 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           body: |
-              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for editing this issue! We will look into it as soon as possible.
+            Hi @${{ github.event.issue.user.login }}! :wave: Thanks for editing this issue! We will look into it as soon as possible.
       - name: reopen comment
         if: github.event.action == 'reopened'
         uses: peter-evans/create-or-update-comment@v4
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            issue-number: ${{ github.event.issue.number }}
-            body: |
-              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for reopening this issue! We will look into it as soon as possible.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }}! :wave: Thanks for reopening this issue! We will look into it as soon as possible.
       - name: close comment
         if: github.event.action == 'closed'
         uses: peter-evans/create-or-update-comment@v4
         with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            issue-number: ${{ github.event.issue.number }}
-            body: |
-              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for closing this issue! We will look into it as soon as possible.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }}! :wave: Thanks for closing this issue! We will look into it as soon as possible.
   comment:
-      if: github.event_name == 'issue_comment'
-      runs-on: ubuntu-latest
-      steps:
-        - name: comment on issue
-          uses: peter-evans/create-or-update-comment@v4
-          with:
-            token: ${{ secrets.GITHUB_TOKEN }}
-            issue-number: ${{ github.event.issue.number }}
-            body: |
-              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for your comment! We will look into it as soon as possible.
+    if: github.event_name == 'issue_comment'
+    runs-on: ubuntu-latest
+    steps:
+      - name: comment on issue
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }}! :wave: Thanks for your comment! We will look into it as soon as possible.
