@@ -24,6 +24,14 @@ jobs:
 
             Thanks for opening this issue. A maintainer will review it soon.
 
+      - name: Add labels to new issue
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: |
+            new
+            timeline:3d
+
       - name: Issue edited
         if: github.event_name == 'issues' && github.event.action == 'edited'
         uses: peter-evans/create-or-update-comment@v4
