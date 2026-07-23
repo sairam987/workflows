@@ -25,7 +25,7 @@ jobs:
           body: |
             Hi @${{ github.event.issue.user.login }}! :wave: Thanks for opening this issue! We will look into it as soon as possible.
       - name: edit comment
-        if: github.event.action == "edited"
+        if: github.event.action == 'edited'
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
           body: |
               Hi @${{ github.event.issue.user.login }}! :wave: Thanks for editing this issue! We will look into it as soon as possible.
       - name: reopen comment
-        if: github.event.action == "reopened"
+        if: github.event.action == 'reopened'
         uses: peter-evans/create-or-update-comment@v4
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
@@ -41,7 +41,7 @@ jobs:
             body: |
               Hi @${{ github.event.issue.user.login }}! :wave: Thanks for reopening this issue! We will look into it as soon as possible.
       - name: close comment
-        if: github.event.action == "closed"
+        if: github.event.action == 'closed'
         uses: peter-evans/create-or-update-comment@v4
         with:
             token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,7 +49,7 @@ jobs:
             body: |
               Hi @${{ github.event.issue.user.login }}! :wave: Thanks for closing this issue! We will look into it as soon as possible.
   comment:
-      if: github.event_name == "issue_comment"
+      if: github.event_name == 'issue_comment'
       runs-on: ubuntu-latest
       steps:
         - name: comment on issue
