@@ -1,0 +1,58 @@
+name: Bot
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+      - closed
+  issue_comment:
+    types:
+      - created
+permissions:
+  issues: write
+jobs:
+  Issue:
+    if: github.event_name == "issues"
+    runs-on: ubuntu-latest
+    steps:
+      if: github.event.action == "opened"
+        - name: greet bot
+          uses: peter-evans/create-or-update-comment@v4
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            issue-number: ${{ github.event.issue.number }}
+            body: |
+              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for opening this issue! We will look into it as soon as possible.
+      if: github.event.action == "edited"
+        - name: edit comment
+          uses: peter-evans/create-or-update-comment@v4
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            issue-number: ${{ github.event.issue.number }}
+            body: |
+              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for editing this issue! We will look into it as soon as possible.
+      if: github.event.action == "reopened"
+        - name: reopen comment  
+          uses: peter-evans/create-or-update-comment@v4
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            issue-number: ${{ github.event.issue.number }}
+            body: |
+              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for reopening this issue! We will look into it as soon as possible.
+      if: github.event.action == "closed"
+        - name: close comment 
+          uses: peter-evans/create-or-update-comment@v4
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            issue-number: ${{ github.event.issue.number }}
+            body: |
+              Hi @${{ github.event.issue.user.login }}! :wave: Thanks for closing this issue! We will look into it as soon as possible.
+    if: github.event_name == "issue_comment"
+      - name: comment on issue
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Hi @${{ github.event.issue.user.login }}! :wave: Thanks for your comment! We will look into it as soon as possible.

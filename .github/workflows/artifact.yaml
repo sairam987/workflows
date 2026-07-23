@@ -1,7 +1,7 @@
 name: upload-artifact
 on:
   push:
-    branches: [main]
+    branches: feature/**
 jobs:
   create-directory:
     runs-on: ubuntu-latest
