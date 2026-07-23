@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - feature/**
+permissions:
+  contents: read
 jobs:
   Test-run:
     runs-on: ubuntu-latest
