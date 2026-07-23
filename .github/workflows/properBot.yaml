@@ -13,11 +13,11 @@ permissions:
   issues: write
 jobs:
   Issue:
-    if: github.event_name == "issue"
+    if: github.event_name == "issues"
     runs-on: ubuntu-latest
     steps:
       - name: greet bot
-        if: ${{ github.event_name == 'issue' && github.event.action == 'opened' }}
+        if: github.event.action == 'opened'
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
